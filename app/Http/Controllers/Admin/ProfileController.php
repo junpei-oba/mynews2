@@ -13,11 +13,11 @@ class ProfileController extends Controller
     }
     public function create()
     {
-        retuen redirect('admin/profile/create');   
+        return redirect('admin/profile/create');   
     }
     public function edit()
     {
-        retuen view('admin.profile.edit');
+        return view('admin.profile.edit');
     }
     public function update()
     {
