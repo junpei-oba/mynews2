@@ -20,12 +20,20 @@ Route::get('/', function () {
 // web.phpを編集して、admin/profile/create にアクセスしたら ProfileController の add Action に、
 // admin/profile/edit にアクセスしたら ProfileController の edit Action に割り当てるように設定してください。
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
+    // Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');※php/laravel12までは各々にmiddleware('auth')を設定していた。
+    Route::get('news/create', 'Admin\NewsController@add');
+    Route::post('news/create', 'Admin\NewsController@create'); # 追記
 // 下記2段は課題4(php-09)の回答
-// 課題2(php-12)…下記2段に「->middleware('auth')」を追記
-    Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
+// 課題2、3(php-12)…下記2段に「->middleware('auth')」を追記
+    // Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');※課題2(php-12)で作成した為、敢えて保存しておく。
+    // Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');※課題3(php-12)で作成した為、敢えて保存しておく。
+    Route::get('profile/create', 'Admin\ProfileController@add');
+    // 課題3(php-13) 
+    Route::post('profile/create', 'Admin\ProfileController@create');
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
+    // 課題6(php-13)
+    Route::post('profile/edit', 'Admin\ProfileController@update');
 });
 
 
