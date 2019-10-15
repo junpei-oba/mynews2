@@ -24,6 +24,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     // Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');※php/laravel12までは各々にmiddleware('auth')を設定していた。
     Route::get('news/create', 'Admin\NewsController@add');
     Route::post('news/create', 'Admin\NewsController@create'); # 追記
+    Route::get('news','Admin\NewsController@index');
+    Route::get('new/edit','Admin\NewsController@edit');
+    Route::post('news/edit','Admin\NewsController@update');
+    Route::get('news/delete','Admin\NewsController@delete');
 // 下記2段は課題4(php-09)の回答
 // 課題2、3(php-12)…下記2段に「->middleware('auth')」を追記
     // Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');※課題2(php-12)で作成した為、敢えて保存しておく。
@@ -31,9 +35,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::get('profile/create', 'Admin\ProfileController@add');
     // 課題3(php-13) 
     Route::post('profile/create', 'Admin\ProfileController@create');
+    Route::get('profile','Admin\ProfileController@index');
     Route::get('profile/edit', 'Admin\ProfileController@edit');
     // 課題6(php-13)
     Route::post('profile/edit', 'Admin\ProfileController@update');
+    Route::get('profile/delete','Admin\ProfileController@delete');
 });
 
 
